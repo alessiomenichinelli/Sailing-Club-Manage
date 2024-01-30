@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% block content %}
+{% csrf_token %}
+<div class="col">
+  <div class="row mb-5 justify-content-center">
+    <div class="card p-0">
+      <div class="index-title card-header bg-dark-subtle text-white">
+        <div class="row align-items-center">
+            <div class="col-3 text-left" style="hight: min-content;">
+                <a href="{% url 'b_index' %}">
+                    <span class="material-symbols-outlined" style="color: white;" title="Visualizza">arrow_back</span>
+                </a>
+            </div>
+            <div class="col-6 text-center">
+                <h1 class="d-inline-block">Visualizza Uscita</h1>
+            </div>
+          </div>
+        </div>
+      </div>    
+      <div class="card-body bg-dark p-4">
+        <form>
+          <fieldset disabled>
+            {% csrf_token %}
+            {% bootstrap_form form %}
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

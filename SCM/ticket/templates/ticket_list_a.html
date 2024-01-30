@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% block content %}
+{% csrf_token %}
+  <div class='col'>
+    <div class="row mb-5 justify-content-center">
+      <div class="card p-0">
+        <div class="index-title card-header bg-dark-subtle text-white text-center">
+          <h1>Tickets da risolvere</h1>
+        </div>
+        <div class="card-body bg-dark p-4">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>User</th>
+                <th>Testo</th>
+                <th>Stato</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for t in tickets %}
+                <tr>
+                  <td>{{ t.user }}</td>
+                  <td>{{ t.testo }}</td>
+                  <td>{{ t.stato }}</td>
+                  <td>
+                    <a href="{% url 'ticket_edit' t.pk %}"><span class="material-symbols-outlined" style="color: secondary;" title="Modifica">edit</span></a>
+                  </td>
+                </tr>
+              {% empty %}
+                <tr>
+                  <td colspan="4">Nessun ticket trovato.</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="row mb-5 justify-content-center">
+      <div class="card p-0">
+        <div class="index-title card-header bg-dark-subtle text-white text-center">
+          <h1>Tickets risolti</h1>
+        </div>
+        <div class="card-body bg-dark p-4">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>User</th>
+                <th>Testo</th>
+                <th>Stato</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for t in tickets_r %}
+                <tr>
+                  <td>{{ t.user }}</td>
+                  <td>{{ t.testo }}</td>
+                  <td>{{ t.stato }}</td>
+                  <td>
+                    <a href="{% url 'ticket_edit' t.pk %}"><span class="material-symbols-outlined" style="color: secondary;" title="Modifica">edit</span></a>
+                  </td>
+                </tr>
+              {% empty %}
+                <tr>
+                  <td colspan="4">Nessun ticket trovato.</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
